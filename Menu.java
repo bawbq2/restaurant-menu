@@ -17,11 +17,11 @@ public class Menu {
         this.restaurantMenu.add(item);
         this.updated = new Date();
     }
+
+    public void getMenuItem(MenuItem food) {
+
+        this.restaurantMenu.add(food);
+
+    }
 };
 
-//public void MenuItem getMenuItem (MenuItem food) {
-//
-//    return this.restaurantMenu.get
-//
-//
-//}
