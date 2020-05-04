@@ -17,10 +17,9 @@ public class MenuItem {
         categoryOptions.add("appetizer");
         categoryOptions.add("main course");
         categoryOptions.add("dessert");
-    }
-
-    MenuItem () {
-
+        if(!categoryOptions.contains(this.itemCategory)) {
+            System.out.println("Menu Item must be an appetizer, main course, or dessert");
+        }
     }
 
     protected MenuItem(String menuItem, String itemDescription, Double itemPrice, String itemCategory, Boolean isNew) {
