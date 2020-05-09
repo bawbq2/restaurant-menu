@@ -2,6 +2,7 @@ package org.launchcode.java.studios.restaurantmenu;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class MenuItem {
 
@@ -9,17 +10,17 @@ public class MenuItem {
     private String itemDescription;
     private Double itemPrice;
     private String itemCategory;
-    private ArrayList<String> categoryOptions = new ArrayList<>();
+    private static ArrayList<String> categoryOptions = new ArrayList<>();
     private Boolean isNew;
     private Date added;
 
-    private void categoryOptions() {
+    private static void addCategoryOptions() {
         categoryOptions.add("appetizer");
         categoryOptions.add("main course");
         categoryOptions.add("dessert");
-        if(!categoryOptions.contains(this.itemCategory)) {
-            System.out.println("Menu Item must be an appetizer, main course, or dessert");
-        }
+//        if(!categoryOptions.contains(this.itemCategory)) {
+//            System.out.println("Menu Item must be an appetizer, main course, or dessert");
+//        }
     }
 
     protected MenuItem(String menuItem, String itemDescription, Double itemPrice, String itemCategory, Boolean isNew) {
@@ -28,6 +29,7 @@ public class MenuItem {
         this.itemPrice = itemPrice;
         this.itemCategory = itemCategory;
         this.isNew = isNew;
+        addCategoryOptions();
     }
 
     public String getMenuItem() {
@@ -73,8 +75,20 @@ public class MenuItem {
     public Boolean getNew() {
         return isNew;
     }
-//
-//    public void setNew(Boolean aNew) {
-//        isNew = aNew;
-//    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MenuItem)) return false;
+        MenuItem menuItem1 = (MenuItem) o;
+        return getMenuItem().equals(menuItem1.getMenuItem()) &&
+                getItemDescription().equals(menuItem1.getItemDescription()) &&
+                getItemPrice().equals(menuItem1.getItemPrice()) &&
+                getItemCategory().equals(menuItem1.getItemCategory());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMenuItem(), getItemDescription(), getItemPrice(), getItemCategory());
+    }
 }

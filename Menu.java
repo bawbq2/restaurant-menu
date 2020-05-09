@@ -15,8 +15,16 @@ public class Menu {
 
 
     public void addMenuItem (MenuItem item){
-        this.restaurantMenu.add(item);
-        this.updated = new Date();
+        if (!this.restaurantMenu.contains(item)) {
+            if (!item.getCategoryOptions().contains(item.getItemCategory())) {
+                System.out.println("The item must be a main course, appetizer, or dessert!");
+            } else {
+                this.restaurantMenu.add(item);
+                this.updated = new Date();
+            }
+        } else {
+            System.out.println(item + " is already on the menu!");
+        }
     }
 
     public void removeMenuItem(MenuItem item){
@@ -50,5 +58,20 @@ public class Menu {
 
         }
     }
+
+    public ArrayList<MenuItem> getRestaurantMenu() {
+        return restaurantMenu;
+    }
+
+    public void setRestaurantMenu(ArrayList<MenuItem> restaurantMenu) {
+        this.restaurantMenu = restaurantMenu;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
 };
+
+
 
